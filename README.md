@@ -2,16 +2,16 @@
 
 ## users テーブル
 
-| Column      | Type     | Options     |
-| ----------- | ---------| ----------- |
-| nickname    | string   | null: false |
-| email       | string   | null: false |
-| password    | string   | null: false |
-| first_name1 | string   | null: false |
-| last_name1  | string   | null: false |
-| first_name2 | string   | null: false |
-| last_name2  | string   | null: false |
-| birthday    | integer  | null: false |
+| Column          | Type     | Options     |
+| --------------- | ---------| ----------- |
+| nickname        | string   | null: false |
+| email           | string   | null: false |
+| password        | string   | null: false |
+| first_name      | string   | null: false |
+| last_name       | string   | null: false |
+| first_name_kana | string   | null: false |
+| last_name_kana  | string   | null: false |
+| birthday        | integer  | null: false |
 
 ### Association
 - has_many :items
@@ -19,14 +19,17 @@
 
 ## items テーブル
 
-| Column       | Type    | Options     |
-| ------------ | --------| ----------- |
-| item_name    | string  | null: false |
-| description  | text    | null: false |
-| category     | text    | null: false |
-| condition    | text    | null: false |
-| price        | integer | null: false |
-| prefecture   | string  | null: false |
+| Column         | Type        | Options                        |
+| ---------------| ------------| -------------------------------|
+| item_name      | string      | null: false                    |
+| description    | text        | null: false                    |
+| category       | integer     | null: false                    |
+| condition      | integer     | null: false                    |
+| price          | integer     | null: false                    |
+| prefecture     | integer     | null: false                    |
+| deliver_charge | string      | null: false                    |
+| deliver_days   | string      | null: false                    |
+| user           | references  | null: false, foreign_key: true |
 
 ### Association
 - belongs_to :user
@@ -34,29 +37,28 @@
 
 ## purchases テーブル
 
-| Column          | Type      | Options     |
-| --------------- | --------- | ----------- |
-| credit_num      | integer   | null: false |
-| credit_limit    | integer   | null: false |
-| security_num    | integer   | null: false |
-| deliver_charge  | string    | null: false |
-| deliver_day     | string    | null: false |
+| Column  | Type        | Options                        |
+| ------- | ----------- | ------------------------------ |
+| user    | references  | null: false, foreign_key: true |
+| item    | references  | null: false, foreign_key: true |
+
 
 ### Association
 - belongs_to :user
-- has_one :item
+- belongs_to :item
 - has_one :address
 
 ## addresses テーブル
 
-| Column      | Type    | Options     |
-| ----------- | ------- | ----------- |
-| postal_code | integer | null: false |
-| prefecture  | string  | null: false |
-| city        | string  | null: false |
-| block       | string  | null: false |
-| building    | string  | null: false |
-| phone       | integer | null: false |
+| Column      | Type       | Options                        |
+| ----------- | ---------- | ------------------------------ |
+| postal_code | string     | null: false                    |
+| prefecture  | integer    | null: false                    |
+| city        | string     | null: false                    |
+| block       | string     | null: false                    |
+| building    | string     |                                |
+| phone       | string     | null: false                    |
+| address     | references | null: false, foreign_key: true |
 
 ### Association
-- has_one :purchase
+- belongs_to :purchase
