@@ -2,7 +2,7 @@
 
 ## users テーブル
 
-| Column             | Type     | Options     |
+| Column              | Type     | Options     |
 | ------------------ | ---------| ----------- |
 | nickname           | string   | null: false |
 | email              | string   | null: false |
@@ -27,8 +27,8 @@
 | condition_id      | integer     | null: false                    |
 | prefecture_id     | integer     | null: false                    |
 | price             | integer     | null: false                    |
-| deliver_charge_id | integer     | null: false                    |
-| deliver_days_id   | integer     | null: false                    |
+| deliver_charge_id | integer      | null: false                    |
+| deliver_days_id   | integer      | null: false                    |
 | user              | references  | null: false, foreign_key: true |
 
 ### Association
