@@ -28,7 +28,7 @@
 | prefecture_id     | integer     | null: false                    |
 | price             | integer     | null: false                    |
 | deliver_charge_id | integer     | null: false                    |
-| deliver_days_id   | integer     | null: false                    |
+| deliver_day_id    | integer     | null: false                    |
 | user              | references  | null: false, foreign_key: true |
 
 ### Association
