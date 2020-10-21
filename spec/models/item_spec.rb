@@ -10,11 +10,6 @@ RSpec.describe Item, type: :model do
       it 'すべての情報が正しく入力されている場合は出品できる' do
         expect(@item).to be_valid
       end
-      it '価格が範囲内の半角数字であれば出品できる' do
-        @item.price = '400'
-        @item.valid?
-        expect(@item).to be_valid
-      end
     end
 
     context '商品の出品がうまくいかない場合' do
@@ -43,8 +38,13 @@ RSpec.describe Item, type: :model do
         @item.valid?
         expect(@item.errors.full_messages).to include('Price Half-width number')
       end
-      it '価格が300~9999999円の範囲外の場合出品できないこと' do
-        @item.price = '100'
+      it '価格が299円以下の場合出品できないこと' do
+        @item.price = '299'
+        @item.valid?
+        expect(@item.errors.full_messages).to include('Price Out of setting range')
+      end
+      it '価格が10000000円以上の場合出品できないこと' do
+        @item.price = '10000000'
         @item.valid?
         expect(@item.errors.full_messages).to include('Price Out of setting range')
       end
