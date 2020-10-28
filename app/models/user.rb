@@ -1,7 +1,6 @@
 class User < ApplicationRecord
-  has_many :items
-  has_many :orders
-  has_one :card, dependent: :destroy
+  has_many :items, dependent: :destroy
+  has_many :orders, dependent: :destroy
 
   with_options presence: true do
     validates :nickname
