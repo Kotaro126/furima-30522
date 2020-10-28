@@ -10,6 +10,11 @@ RSpec.describe UserOrder, type: :model do
       it '全ての値が入力されていれば保存できる' do
         expect(@user_order).to be_valid
       end
+      it 'buildingが入力されていない場合でも保存できる' do
+        @user_order.building = nil
+        @user_order.valid?
+        expect(@user_order).to be_valid
+      end
     end
 
     context '購入記録の保存がうまくいかない場合' do
