@@ -26,42 +26,42 @@ RSpec.describe UserOrder, type: :model do
       it 'postal_codeにハイフンが含まれていない場合保存できない' do
         @user_order.postal_code = '1111111'
         @user_order.valid?
-        expect(@user_order.errors.full_messages).to include('Postal code is invalid. Include hyphen(-)')
+        expect(@user_order.errors.full_messages).to include('Postal code が有効ではありません.ハイフンを含めた半角数字を記入して下さい.')
       end
       it 'postal_codeが全角数字では保存できないこと' do
         @user_order.postal_code = '１１１１１１１'
         @user_order.valid?
-        expect(@user_order.errors.full_messages).to include('Postal code is invalid. Include hyphen(-)')
+        expect(@user_order.errors.full_messages).to include('Postal code が有効ではありません.ハイフンを含めた半角数字を記入して下さい.')
       end
       it 'postal_codeが平仮名の場合は保存できないこと' do
         @user_order.postal_code = 'あああああああ'
         @user_order.valid?
-        expect(@user_order.errors.full_messages).to include('Postal code is invalid. Include hyphen(-)')
+        expect(@user_order.errors.full_messages).to include('Postal code が有効ではありません.ハイフンを含めた半角数字を記入して下さい.')
       end
       it 'postal_codeが漢字の場合は保存できないこと' do
         @user_order.postal_code = '郵便番号'
         @user_order.valid?
-        expect(@user_order.errors.full_messages).to include('Postal code is invalid. Include hyphen(-)')
+        expect(@user_order.errors.full_messages).to include('Postal code が有効ではありません.ハイフンを含めた半角数字を記入して下さい.')
       end
       it 'postal_codeが全角カタカナの場合は保存できないこと' do
         @user_order.postal_code = 'アアアアアアア'
         @user_order.valid?
-        expect(@user_order.errors.full_messages).to include('Postal code is invalid. Include hyphen(-)')
+        expect(@user_order.errors.full_messages).to include('Postal code が有効ではありません.ハイフンを含めた半角数字を記入して下さい.')
       end
       it 'postal_codeが半角カタカナの場合は保存できないこと' do
         @user_order.postal_code = 'ｱｱｱｱｱｱｱ'
         @user_order.valid?
-        expect(@user_order.errors.full_messages).to include('Postal code is invalid. Include hyphen(-)')
+        expect(@user_order.errors.full_messages).to include('Postal code が有効ではありません.ハイフンを含めた半角数字を記入して下さい.')
       end
       it 'postal_codeが半角英字の場合は保存できないこと' do
         @user_order.postal_code = 'postalcode'
         @user_order.valid?
-        expect(@user_order.errors.full_messages).to include('Postal code is invalid. Include hyphen(-)')
+        expect(@user_order.errors.full_messages).to include('Postal code が有効ではありません.ハイフンを含めた半角数字を記入して下さい.')
       end
       it 'postal_codeが全角英字の場合は保存できないこと' do
         @user_order.postal_code = 'ｐｏｓｔａｌｃｏｄｅ'
         @user_order.valid?
-        expect(@user_order.errors.full_messages).to include('Postal code is invalid. Include hyphen(-)')
+        expect(@user_order.errors.full_messages).to include('Postal code が有効ではありません.ハイフンを含めた半角数字を記入して下さい.')
       end
       it 'prefecture_idが空だと保存できない' do
         @user_order.prefecture_id = nil
@@ -86,47 +86,47 @@ RSpec.describe UserOrder, type: :model do
       it 'phoneが全角数字では登録できないこと' do
         @user_order.phone = '１１１１１１１１１１１'
         @user_order.valid?
-        expect(@user_order.errors.full_messages).to include('Phone is invalid. 半角数字を使用してください')
+        expect(@user_order.errors.full_messages).to include('Phone が有効ではありません.半角数字を使用してください.')
       end
       it 'phoneが平仮名の場合は登録できないこと' do
         @user_order.phone = 'あああ'
         @user_order.valid?
-        expect(@user_order.errors.full_messages).to include('Phone is invalid. 半角数字を使用してください')
+        expect(@user_order.errors.full_messages).to include('Phone が有効ではありません.半角数字を使用してください.')
       end
       it 'phoneが漢字の場合は登録できないこと' do
         @user_order.phone = '電話番号'
         @user_order.valid?
-        expect(@user_order.errors.full_messages).to include('Phone is invalid. 半角数字を使用してください')
+        expect(@user_order.errors.full_messages).to include('Phone が有効ではありません.半角数字を使用してください.')
       end
       it 'phoneが全角カタカナの場合は登録できないこと' do
         @user_order.phone = 'アアア'
         @user_order.valid?
-        expect(@user_order.errors.full_messages).to include('Phone is invalid. 半角数字を使用してください')
+        expect(@user_order.errors.full_messages).to include('Phone が有効ではありません.半角数字を使用してください.')
       end
       it 'phoneが半角カタカナの場合は登録できないこと' do
         @user_order.phone = 'ｱｱｱ'
         @user_order.valid?
-        expect(@user_order.errors.full_messages).to include('Phone is invalid. 半角数字を使用してください')
+        expect(@user_order.errors.full_messages).to include('Phone が有効ではありません.半角数字を使用してください.')
       end
       it 'phoneが半角英字の場合は登録できないこと' do
         @user_order.phone = 'phone'
         @user_order.valid?
-        expect(@user_order.errors.full_messages).to include('Phone is invalid. 半角数字を使用してください')
+        expect(@user_order.errors.full_messages).to include('Phone が有効ではありません.半角数字を使用してください.')
       end
       it 'phoneが全角英字の場合は登録できないこと' do
         @user_order.phone = 'ｐｈｏｎｅ'
         @user_order.valid?
-        expect(@user_order.errors.full_messages).to include('Phone is invalid. 半角数字を使用してください')
+        expect(@user_order.errors.full_messages).to include('Phone が有効ではありません.半角数字を使用してください.')
       end
       it 'phoneが11桁以上の数字では登録できないこと' do
         @user_order.phone = '000000000000'
         @user_order.valid?
-        expect(@user_order.errors.full_messages).to include('Phone is invalid. 半角数字を使用してください')
+        expect(@user_order.errors.full_messages).to include('Phone が有効ではありません.半角数字を使用してください.')
       end
       it 'phoneにハイフンが含まれる場合は登録できないこと' do
         @user_order.phone = '111-1111-1111'
         @user_order.valid?
-        expect(@user_order.errors.full_messages).to include('Phone is invalid. 半角数字を使用してください')
+        expect(@user_order.errors.full_messages).to include('Phone が有効ではありません.半角数字を使用してください.')
       end
     end
   end
