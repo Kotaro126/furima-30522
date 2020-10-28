@@ -1,12 +1,15 @@
 class OrdersController < ApplicationController
   before_action :authenticate_user!, only: :create
   before_action :set_item, only: [:index, :create]
-
+#ログインしていないユーザーは,購入ページに遷移しようとすると、トップページでなくログインページに遷移する
+#ログイン・ログアウトの状態に関わらず、URLを直接入力して売却済み商品の商品購入ページへ遷移しようとすると、トップページに遷移することok
   def index
-    if user_signed_in? && current_user.id != @item.user_id && @item.order.blank?
-      @user_order = UserOrder.new 
-    else
+    if @item.order.blank? && user_signed_in? && current_user.id != @item.user_id
+      @user_order = UserOrder.new
+    elsif @item.order.present? 
       redirect_to root_path
+    else 
+      redirect_to new_user_session_path
     end
   end
 
